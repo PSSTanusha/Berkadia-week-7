@@ -1,0 +1,58 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+</nav>
+<div class="section-main">
+    <div class="container" role="main">
+        <div class="row">
+            <div class="col-xs-12 col-md-6">
+                <h2>Air Quality</h2>
+            </div>
+            <div class="col-xs-12 col-md-6">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Country code" #name />
+                    <button class="btn btn-primary" (click)="searchCountry(name.value)">Search</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container" *ngIf="countrydata">
+    <div class="row">
+        <div class="col-md-4" *ngFor="let country of countries">
+            <div class="card mb-4 box-shadow">
+                <div class="style2">
+                    <h3 class="my-0 font-weight-normal">{{country.name}}</h3>
+                </div>
+                <div class="style1">
+                    <p>Country Code: {{country.code}}</p>
+                    <p>Number of cities: {{country.cities}}</p>
+                    <p>locations: {{country.locations}}</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container" *ngIf="locationdata">
+    <div class="row">
+        <div class="col-md-4" *ngFor="let location of locations">
+            <div class="card mb-4 box-shadow">
+                <div class="style2">
+                    <h3 class="my-0 font-weight-normal">{{location.location}}</h3>
+                </div>
+                <div class="style1">
+                    <p>City Name: {{location.city}}</p>
+                    <p>Country: {{location.country}}</p>
+                    <p>locations: {{location.distance}}</p>
+                    <p>Measurements:</p>
+                    <ul *ngFor="let measurement of location.measurements">
+                        <li>Parameter: {{measurement.parameter}}</li>
+                        <li>Unit:{{measurement.unit}}</li>
+                        <li>Value:{{measurement.value}}</li>
+                        <li>Source Name:{{measurement.sourceName}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<router-outlet></router-outlet>
